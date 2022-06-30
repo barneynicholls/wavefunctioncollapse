@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00851a3493ce443ab16b8183cdc4ad1, type: 3}
   m_Name: Slot
   m_EditorClassIdentifier: 
-  Modules: []
-  Potentials: []
+  modules:
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  potentials:
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  selected: {fileID: 0}
+  position: {x: 0, y: 0}

@@ -332,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 10
   sizeY: 10
-  slot: {fileID: 11400000, guid: bc7147882cbc34a109fb45195dba3c42, type: 2}
+  slotDefinition: {fileID: 11400000, guid: bc7147882cbc34a109fb45195dba3c42, type: 2}
 --- !u!4 &1473610515
 Transform:
   m_ObjectHideFlags: 0

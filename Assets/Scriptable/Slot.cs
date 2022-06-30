@@ -8,10 +8,10 @@ public class Slot : ScriptableObject
     public Module[] modules;
 
     [HideInInspector]
-    public Module[] potentials;
+    public List<Module> potentials;
 
     [HideInInspector]
-    public int entropy => potentials.Length;
+    public int entropy => potentials?.Count ?? 0;
 
     [HideInInspector]
     public Module selected;
@@ -21,6 +21,7 @@ public class Slot : ScriptableObject
 
     private void OnEnable()
     {
-        modules.CopyTo(potentials, 0);
+        potentials = new List<Module>();
+        potentials.AddRange(modules);
     }
 }

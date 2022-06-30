@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeddcc2bd311d4ec9b734c25d27851ba, type: 3}
   m_Name: sand
   m_EditorClassIdentifier: 
-  north: []
-  south: []
-  east: []
-  west: []
-  name: 
+  north:
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  south:
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  east:
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  west:
+  - {fileID: 11400000, guid: ead6c7c7ef467421fbbbfce06d65c311, type: 2}
+  - {fileID: 11400000, guid: b3dcd1d5d566b4bc18778ae9ef2e7a6f, type: 2}
+  name: sand

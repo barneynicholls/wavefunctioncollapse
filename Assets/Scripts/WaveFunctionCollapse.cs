@@ -10,19 +10,32 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     public int sizeY = 10;
 
-    public Slot slot;
+    public Slot slotDefinition;
 
     private List<Slot> slots;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (slot is null)
-            Debug.LogError($"{nameof(WaveFunctionCollapse)} slot not set");
+        if (slotDefinition is null)
+            Debug.LogError($"{nameof(WaveFunctionCollapse)} slotDefinition not set");
 
         PopulateSlots();
 
-        // TODO get remaining by selecting those slots left with entropy > 0
+        Debug.Log($"slots created: {slots.Count}");
+
+        var remaining = GetRemaining();
+
+        while(remaining.Count() > 0)
+        {
+            Debug.Log($"remaining: {remaining.Count()}");
+
+            var slot = GetNextSlot(remaining);
+
+            PropogateFrom(slot);
+
+            remaining = GetRemaining();
+        }
     }
 
     private void PopulateSlots()
@@ -33,31 +46,34 @@ public class WaveFunctionCollapse : MonoBehaviour
         {
             for (int y = 0; y < sizeY; y++)
             {
-                var clone = Instantiate(slot);
+                var clone = Instantiate(slotDefinition);
                 clone.position = new Vector2(x, y);
                 slots.Add(clone);
             }
         }
     }
 
-    private Vector2 GetNextSlot(IEnumerable<Slot> remaining)
+    private IEnumerable<Slot> GetRemaining()
     {
-        var grouped = from r in remaining
-                      group r by r.entropy into entropy
-                      orderby entropy.Key
-                      select entropy;
-
-        // TODO order and select random from group with lowest entropy
-
-
-        return new Vector2(
-            Random.Range(0, sizeX),
-            Random.Range(0, sizeY));
+        return slots.Where(s => s.entropy > 0);
     }
 
-    private void Propogate(Vector2 start)
+    private Slot GetNextSlot(IEnumerable<Slot> remaining)
     {
+        var lowestEntropy = remaining
+            .GroupBy(r => r.entropy)
+            .OrderBy(g=>g.Key).First();
 
+        return lowestEntropy.ElementAt(Random.Range(0, lowestEntropy.Count()));
+    }
+
+    private void PropogateFrom(Slot slot)
+    {
+        var potential = slot.potentials.ElementAt(Random.Range(0, slot.potentials.Count));
+
+        Debug.Log($"create: {potential.name}");
+
+        slot.potentials.Clear();
     }
 
     // Update is called once per frame

@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeddcc2bd311d4ec9b734c25d27851ba, type: 3}
   m_Name: grass
   m_EditorClassIdentifier: 
-  north: []
-  south: []
-  east: []
-  west: []
-  name: 
+  north:
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000}
+  south:
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000}
+  east:
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000}
+  west:
+  - {fileID: 11400000, guid: f3a91dc91e4ee497a8601bb7c45d6123, type: 2}
+  - {fileID: 11400000}
+  name: grass
