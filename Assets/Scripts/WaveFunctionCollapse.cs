@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Threading;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -26,17 +27,20 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         var remaining = GetRemaining();
 
-        while(remaining.Count() > 0)
-        {
-            Debug.Log($"remaining: {remaining.Count()}");
+        //while (remaining.Count() > 0)
+        //{
+        Debug.Log($"remaining: {remaining.Count()}");
 
-            var slot = GetNextSlot(remaining);
+        var slot = GetNextSlot(remaining);
 
-            PropogateFrom(slot);
+        PropogateFrom(slot);
 
-            remaining = GetRemaining();
-        }
+        remaining = GetRemaining();
+        //   }
+
+
     }
+
 
     private void PopulateSlots()
     {
@@ -49,6 +53,9 @@ public class WaveFunctionCollapse : MonoBehaviour
                 var clone = Instantiate(slotDefinition);
                 clone.position = new Vector2(x, y);
                 slots.Add(clone);
+
+                var obj = Instantiate(Resources.Load("blank"), transform) as GameObject;
+                obj.transform.position = clone.position;
             }
         }
     }
@@ -62,7 +69,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         var lowestEntropy = remaining
             .GroupBy(r => r.entropy)
-            .OrderBy(g=>g.Key).First();
+            .OrderBy(g => g.Key).First();
 
         return lowestEntropy.ElementAt(Random.Range(0, lowestEntropy.Count()));
     }
@@ -71,9 +78,54 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         var potential = slot.potentials.ElementAt(Random.Range(0, slot.potentials.Count));
 
-        Debug.Log($"create: {potential.name}");
+        CreateObject(slot.position, potential.name);
 
         slot.potentials.Clear();
+
+        // north
+        Adjacent(new Vector2(slot.position.x - 1, slot.position.y), potential.north.ToList());
+        // south
+        Adjacent(new Vector2(slot.position.x + 1, slot.position.y), potential.south.ToList());
+        // east
+        Adjacent(new Vector2(slot.position.x , slot.position.y -1 ), potential.west.ToList());
+        // west
+        Adjacent(new Vector2(slot.position.x , slot.position.y + 1), potential.north.ToList());
+    }
+
+    private void Adjacent(Vector2 position, List<Module> allowed)
+    {
+        if (position.x < 0 || position.x > sizeX - 1)
+            return;
+
+        if (position.y < 0 || position.y > sizeY - 1)
+            return;
+
+        var slot = slots.Where(p => p.position == position).FirstOrDefault();
+
+        if (slot == null)
+            return;
+
+        if (slot.entropy == 0)
+            return;
+
+        var possibles = from p in slot.potentials
+                        join a in allowed
+                        on p.name equals a.name
+                        select p;
+
+        var match = slot.potentials.ElementAt(Random.Range(0, possibles.Count()));
+
+        CreateObject(slot.position, match.name);
+
+        slot.potentials.Clear();
+    }
+
+    private void CreateObject(Vector2 position, string match)
+    {
+        Debug.Log($"creating adjacent ({position}): {match}");
+
+        var obj = Instantiate(Resources.Load(match),transform) as GameObject;
+        obj.transform.position = position;
     }
 
     // Update is called once per frame
