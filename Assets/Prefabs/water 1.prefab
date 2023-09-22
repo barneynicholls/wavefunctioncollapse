@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4303754473340452980}
   - component: {fileID: 7648557767494818158}
   m_Layer: 0
-  m_Name: water
+  m_Name: water 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,17 +112,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upNeighbours:
   - {fileID: 7648557767494818158}
-  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
-  - {fileID: 7648557767494818158, guid: 14d6a857e0ef0ef4abb9e7866f30e197, type: 3}
+  - {fileID: 7648557767494818158, guid: 34ac1537f650e5148be08b41de30f3fa, type: 3}
   rightNeighbours:
   - {fileID: 7648557767494818158}
+  - {fileID: 7648557767494818158, guid: 34ac1537f650e5148be08b41de30f3fa, type: 3}
   - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
-  - {fileID: 7648557767494818158, guid: 14d6a857e0ef0ef4abb9e7866f30e197, type: 3}
   downNeighbours:
+  - {fileID: 7648557767494818158, guid: 34ac1537f650e5148be08b41de30f3fa, type: 3}
   - {fileID: 7648557767494818158}
-  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
-  - {fileID: 7648557767494818158, guid: 14d6a857e0ef0ef4abb9e7866f30e197, type: 3}
   leftNeighbours:
+  - {fileID: 7648557767494818158, guid: 34ac1537f650e5148be08b41de30f3fa, type: 3}
   - {fileID: 7648557767494818158}
   - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
-  - {fileID: 7648557767494818158, guid: 14d6a857e0ef0ef4abb9e7866f30e197, type: 3}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8446774700328160280}
   - component: {fileID: 9146186908867934370}
   - component: {fileID: 5380131602784679345}
+  - component: {fileID: 9135299655238281365}
   m_Layer: 0
   m_Name: grass
   m_TagString: Untagged
@@ -97,3 +98,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9135299655238281365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153456899567417561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712071f64c529c143b32affd342e31ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upNeighbours:
+  - {fileID: 9135299655238281365}
+  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
+  - {fileID: 9135299655238281365, guid: c8a5494822eaa0840a8966feeda891f3, type: 3}
+  rightNeighbours:
+  - {fileID: 9135299655238281365}
+  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
+  - {fileID: 9135299655238281365, guid: c8a5494822eaa0840a8966feeda891f3, type: 3}
+  downNeighbours:
+  - {fileID: 9135299655238281365}
+  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
+  - {fileID: 9135299655238281365, guid: c8a5494822eaa0840a8966feeda891f3, type: 3}
+  leftNeighbours:
+  - {fileID: 9135299655238281365}
+  - {fileID: 7231815624214280643, guid: 7b183a469273c3f4bb5d90beec8d6ce0, type: 3}
+  - {fileID: 9135299655238281365, guid: c8a5494822eaa0840a8966feeda891f3, type: 3}
