@@ -1,29 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
 public class WaveFunction : MonoBehaviour
 {
-    public int dimensions;
-
-    public TMPro.TMP_Text text;
-    public TMPro.TMP_Text seedUsed;
-
-    public Cell cellObj;
-    public Tile[] tileObjects;
-    public int cellSize = 1;
-    public int seed = 0;
+    [SerializeField]
+    private int dimensions;
+    [SerializeField]
+    private TMPro.TMP_Text text;
+    [SerializeField]
+    private TMPro.TMP_Text seedUsed;
+    [SerializeField]
+    private Cell cellObj;
+    [SerializeField]
+    private Tile[] tileObjects;
+    [SerializeField]
+    private int cellSize = 1;
+    [SerializeField]
+    private int seed = 0;
 
     int iterations = 0;
-
     List<Cell> gridComponents;
-    
-    DateTime start = DateTime.Now;
+    Stopwatch stopwatch;
 
     void Awake()
     {
+        stopwatch = new Stopwatch();
         gridComponents = new List<Cell>();
         InitializeGrid();
     }
@@ -46,7 +51,7 @@ public class WaveFunction : MonoBehaviour
         {
             for (int i = gridComponents.Count - 1; i >= 0; i--)
             {
-                Destroy(obj: gridComponents.ElementAt(i).transform.gameObject);
+                Destroy(gridComponents[i].transform.gameObject);
                 gridComponents.RemoveAt(i);
             }
 
@@ -59,7 +64,8 @@ public class WaveFunction : MonoBehaviour
     void InitializeGrid()
     {
         UpdateText("Initializing grid.");
-        start = DateTime.Now;
+        stopwatch.Reset();
+        stopwatch.Start();
 
         for (int y = 0; y < dimensions; y++)
         {
@@ -71,7 +77,7 @@ public class WaveFunction : MonoBehaviour
             }
         }
 
-        var wfcSeed = seed > 0 ? seed : UnityEngine.Random.Range(0,Int32.MaxValue);
+        var wfcSeed = seed > 0 ? seed : UnityEngine.Random.Range(0, Int32.MaxValue);
 
         UnityEngine.Random.InitState(wfcSeed);
 
@@ -178,8 +184,8 @@ public class WaveFunction : MonoBehaviour
         }
         else
         {
-            var time = (DateTime.Now - start).TotalSeconds;
-            UpdateText($"Done in {time:F2} seconds");
+            stopwatch.Stop();
+            UpdateText($"Done in {stopwatch.Elapsed.TotalSeconds:F2} seconds");
         }
 
     }
